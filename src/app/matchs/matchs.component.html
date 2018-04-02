@@ -1,0 +1,17 @@
+<ul *ngIf="matchs.length>0; else loading">
+  <li *ngFor="let match of matchs">
+    {{ match.name }} : {{ match.firstTeam }} - {{ match.secondTeam }} ({{ match.result }})- {{ match.startDate | date: 'dd/MM/yyyy:HH:mm' }}
+    <span [hidden]="match.hide">
+      <button (click)="showOrHideInputScore(match)" value="">Modify</button>
+    </span>
+    <span [hidden]="!match.hide">
+      <input [(ngModel)]="match.result">
+      <button (click)="addResult(match)" value="">Save</button>
+      <button (click)="showOrHideInputScore(match)" value="">Cancel</button>
+    </span>
+  </li>
+</ul>
+<button (click)="addResults(matchs)">Add scores</button>
+<ng-template #loading>No match</ng-template>
+
+<a href="teams" href>return</a>

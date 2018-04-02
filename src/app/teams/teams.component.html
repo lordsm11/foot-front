@@ -1,0 +1,17 @@
+<h1>List of Groups</h1>
+<ul *ngIf="groups.length>0; else loadingG">
+  <li *ngFor="let group of groups; let i = index">
+    <a href="matchs/group/{{group.id}}" href>{{i+1}} - {{group.name}}</a>
+  </li>
+</ul>
+<ng-template #loadingG>No group</ng-template>
+
+<h1>List of Teams</h1>
+Search a team : <input #search (keyup)="searchTeam(search.value)">
+<ul *ngIf="teams.length>0; else loading">
+  <li *ngFor="let team of teams; let i = index" [hidden]="team.hide">
+    <a href="matchs/team/{{team.name}}" href>{{i+1}} - {{team.name}}</a>
+  </li>
+</ul>
+<ng-template #loading>No team</ng-template>
+
